@@ -1,3 +1,15 @@
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/sghatge/sghatge/main/assets/portfolio/project-banner.svg" width="100%" alt="Sangram Ghatge engineering portfolio banner">
+
+**INDEPENDENT ENGINEERING PORTFOLIO · AJO JOURNEY ORCHESTRATION LAB**
+
+[GitHub Profile](https://github.com/sghatge) · [Portfolio](https://sghatge.github.io/adobe-campaign-v8-governance/)
+
+</div>
+
+---
+
 # Adobe Journey Optimizer — Journey Intelligence Lab
 
 An interactive, hands-on learning lab for Adobe Journey Optimizer (AJO), built with Streamlit and synthetic customer data.
