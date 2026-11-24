@@ -40,6 +40,9 @@ pytest
 python src/simulate_journey.py
 ```
 
+## Shared lifecycle integration
+The lab includes an Integration Contract tab and shares `contracts/customer-lifecycle-event.json` plus `contracts/salesforce-followup-action.json` with the AEP and Salesforce labs. See `docs/phase-5-shared-lifecycle-integration.md`. No live event ingestion or message send is enabled.
+
 ## Prerequisites for real AJO practice
 An appropriately licensed AJO sandbox, AEP dataset/profile access, event configuration, channel surface and sender setup, test identities, and approval for any outbound testing. Start with test profiles and non-production channels.
 
