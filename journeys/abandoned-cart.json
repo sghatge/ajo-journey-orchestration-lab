@@ -1,0 +1,13 @@
+{
+  "journeyId": "abandoned-cart-lab-v1",
+  "status": "design-only",
+  "entry": {"event": "addToCart", "waitMinutes": 60, "requiresNoPurchase": true},
+  "actions": [
+    {"channel": "email", "offset": "after-entry-evaluation", "requiresConsent": "GRANTED"},
+    {"channel": "sms", "offset": "24h-after-email", "requiresConsent": "GRANTED", "requiresNoPurchase": true},
+    {"channel": "email", "offset": "24h-after-sms", "requiresConsent": "GRANTED", "requiresNoPurchase": true}
+  ],
+  "exitConditions": ["purchase", "consent-withdrawn", "profile-suppressed", "identity-invalid", "journey-expired"],
+  "fatiguePolicy": {"maxMarketingImpressionsPer7Days": 3, "minimumHoursBetweenMessages": 24},
+  "notes": "Illustrative platform-neutral specification; map to supported AJO capabilities and tenant configuration before implementation."
+}

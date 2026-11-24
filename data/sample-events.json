@@ -1,0 +1,5 @@
+[
+  {"profileId":"LAB-1001","event":"addToCart","timestamp":"2026-11-24T08:00:00+05:30","cartId":"CART-1","purchaseWithin60m":false,"emailConsent":"GRANTED","smsConsent":"DENIED"},
+  {"profileId":"LAB-1002","event":"addToCart","timestamp":"2026-11-24T08:05:00+05:30","cartId":"CART-2","purchaseWithin60m":true,"emailConsent":"GRANTED","smsConsent":"GRANTED"},
+  {"profileId":"LAB-1003","event":"addToCart","timestamp":"2026-11-24T08:10:00+05:30","cartId":"CART-3","purchaseWithin60m":false,"emailConsent":"UNKNOWN","smsConsent":"GRANTED"}
+]
