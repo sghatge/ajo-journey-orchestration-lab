@@ -67,6 +67,26 @@ with tab_overview:
     }
     """)
     st.markdown("**Design principle:** every action is conditional. Re-check consent, purchase suppression and contact fatigue at the point of action; record why a profile continued, waited, exited or was blocked.")
+
+    st.markdown("#### Journey decision map")
+    st.graphviz_chart("""
+    digraph decision {
+      rankdir=TB; graph [bgcolor="transparent",pad="0.2",nodesep="0.28",ranksep="0.38"];
+      node [shape=box,style="rounded,filled",fontname="Arial",fontsize=10,color="#7892b5",fillcolor="#edf4ff"];
+      edge [color="#64748b",fontname="Arial",fontsize=9,arrowsize=0.75];
+      entry [label="Event received"];
+      consent [label="Channel consent?"];
+      fatigue [label="Frequency + quiet-time checks?"];
+      bought [label="Purchase detected?"];
+      send [label="Simulate action",fillcolor="#dcf5e8",color="#29945b"];
+      block [label="Block + record reason",fillcolor="#ffe4e6",color="#d44d5c"];
+      exit [label="Exit journey",fillcolor="#eee8ff",color="#7554c7"];
+      entry->consent; consent->fatigue [label="Yes"]; consent->block [label="No"];
+      fatigue->bought [label="Pass"]; fatigue->block [label="Fail"];
+      bought->exit [label="Yes"]; bought->send [label="No"];
+    }
+    """)
+
     st.warning("This topology is a conceptual journey blueprint. Actual AJO capabilities, limits and configuration depend on tenant licensing and implementation.")
 
 with tab_design:
@@ -181,6 +201,15 @@ with tab_analytics:
         {"stage":"SMS blocked","profiles":total-sms_eligible},
     ])
     st.bar_chart(summary.set_index("stage"))
+    st.markdown("#### Journey eligibility funnel")
+    funnel = pd.DataFrame([
+        {"stage":"All sample profiles","profiles":total},
+        {"stage":"Email eligible","profiles":email_eligible},
+        {"stage":"SMS eligible","profiles":sms_eligible},
+        {"stage":"Purchase exits","profiles":converted},
+    ])
+    st.bar_chart(funnel.set_index("stage"))
+
     st.dataframe(base[["customer_id","tier","cart_value","eligible_email","eligible_sms","purchased","impressions_7d"]], use_container_width=True, hide_index=True)
     st.download_button("Export analytics CSV", summary.to_csv(index=False).encode(), file_name="ajo_journey_analytics.csv", mime="text/csv")
     st.caption("These are deterministic sample-profile counts, not campaign results, delivery metrics or measured incremental lift.")
